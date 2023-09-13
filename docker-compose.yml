@@ -1,0 +1,16 @@
+version: '3.7'                                  #Schema Version dari Docker compose
+services:                                       #Service yang akan dijalankan (item-app dan item-db)
+  item-app: 
+    image: ghcr.io/agustinusbpm/item-app:v1     #Menggunakan image item-app dari registry github packages
+    ports:
+      - "80:8080"                               #Mengekspos port 80 agar aplikasi di port 8080 dapat diakses dari lua
+    depends_on:
+      - item-db                                 #Menentukan service item-app akan membutuhkan service item-db, sehingga item-db akan dijalankan terlebih dahulu
+    restart: always                             #Restart policy yang akan otomatis menjalankan kembali container jika terhenti
+  item-db:
+    image: mongo:3                              #Menggunakan image mongo:3 dari docker hub
+    volumes: 
+      - app-db:/data/db                         #Volume binding dari volume docker yang dibuat ke direktori /data/db pada container
+    restart: always                             #Restart policy yang akan otomatis menjalankan kembali container jika terhenti
+volumes:
+  app-db:                                       #Volume yang akan dibuat dan digunakan pada item-db
