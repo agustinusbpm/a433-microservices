@@ -25,8 +25,9 @@ jobs:
           name: "Build & Push Image"
           command: |
             ls
+            chmod +x build_push_image_karsajobs.sh
             export pat=${pat}
-            sh build_push_image.karsajobs.sh
+            sh build_push_image_karsajobs.sh
 workflows:
   lint-dockerfile-workflow:
     jobs:
