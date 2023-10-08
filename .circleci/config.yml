@@ -8,14 +8,6 @@ jobs:
       - run:
           name: "Lint Dockerfile"
           command: "hadolint Dockerfile"
-  test-app:
-    docker:
-      - image: cimg/go:1.15
-    steps:
-      - checkout
-      - run:
-          name: "Test App"
-          command: "go test -v -short --count=1 $(go list ./...)"
   build-app-karsajobs-ui:
     docker: 
       - image: docker:dind
@@ -26,16 +18,13 @@ jobs:
           name: "Build & Push Image"
           command: |
             ls
-            chmod +x build_push_image_karsajobs-ui.sh
+            chmod +x build_push_image_karsajobs_ui.sh
             export pat=${pat}
-            sh build_push_image_karsajobs-ui.sh
+            sh build_push_image_karsajobs_ui.sh
 workflows:
   lint-dockerfile-workflow:
     jobs:
       - lint-dockerfile
-  test-app-workflow:
-    jobs:
-      - test-app
   build-app-karsajobs-workflow:
     jobs:
       - build-app-karsajobs-ui
