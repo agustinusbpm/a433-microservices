@@ -4,7 +4,6 @@
 username="agustinusbpm"
 registry="ghcr.io"
 container_name="karsajobs-ui"
-pat="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"
 
 #Perintah untuk build image
 docker build -t $registry/$username/$container_name:latest .
