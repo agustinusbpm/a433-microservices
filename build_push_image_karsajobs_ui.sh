@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Variabel yang diperlukan untuk build dan push images
+#Variabel yang diperlukan untuk build dan push imagess
 username="agustinusbpm"
 registry="ghcr.io"
 container_name="karsajobs-ui"
